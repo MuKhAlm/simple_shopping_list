@@ -6,6 +6,7 @@
 - Each shopping list can be deleted.
 - When pressed, navigate to shopping list screen.
 - Display a side menu.
+- User can add new shopping list.
 
 ## Shopping List Screen
 
@@ -14,6 +15,7 @@
 - Each shopping item:
   - Can be checked and unchecked.
   - Can be deleted.
+- User can add shopping items.
 - Shopping list can be deleted.
 - Presents a method for which the user can navigate back.
 
