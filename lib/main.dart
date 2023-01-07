@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Placeholder(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Simple Shopping List'),
+        ),
+        drawer: const Drawer(),
+        body: const HomeScreen(),
+      ),
     );
   }
 }
