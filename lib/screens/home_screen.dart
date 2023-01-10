@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/widgets/custom_material_app.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,43 +45,45 @@ class HomeScreen extends StatelessWidget {
       'Shopping List 5',
     ];
 
-    return SafeArea(
-      child: Stack(children: [
-        ListView.separated(
-            itemCount: shoppingLists.length,
-            itemBuilder: ((context, int index) {
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(shoppingLists[index]),
-                    trailing: IconButton(
-                      icon: const Icon(
-                        Icons.delete_forever_rounded,
+    return CustomMaterialApp(
+      body: SafeArea(
+        child: Stack(children: [
+          ListView.separated(
+              itemCount: shoppingLists.length,
+              itemBuilder: ((context, int index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text(shoppingLists[index]),
+                      trailing: IconButton(
+                        icon: const Icon(
+                          Icons.delete_forever_rounded,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
+                      onTap: () {},
                     ),
-                    onTap: () {},
-                  ),
-                  SizedBox(
-                    height: (index == shoppingLists.length - 1) ? 100 : 0,
-                  )
-                ],
-              );
-            }),
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 10,
-              );
-            }),
-        Positioned(
-          bottom: 20,
-          right: 20,
-          child: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {},
+                    SizedBox(
+                      height: (index == shoppingLists.length - 1) ? 100 : 0,
+                    )
+                  ],
+                );
+              }),
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              }),
+          Positioned(
+            bottom: 20,
+            right: 20,
+            child: FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {},
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
