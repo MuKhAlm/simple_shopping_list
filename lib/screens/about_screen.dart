@@ -6,9 +6,35 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomMaterialApp(
+    return CustomMaterialApp(
       title: 'About',
-      body: Placeholder(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                'Simple Shopping List',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'A shopping list application developed using Flutter.',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
