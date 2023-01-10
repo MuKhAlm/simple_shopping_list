@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/screens/shopping_list_screen.dart';
 import 'package:simple_shopping_list/widgets/custom_material_app.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,7 +62,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         onPressed: () {},
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => const ShoppingListScreen()),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(
                       height: (index == shoppingLists.length - 1) ? 100 : 0,
