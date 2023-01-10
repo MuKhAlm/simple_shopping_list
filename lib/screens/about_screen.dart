@@ -6,8 +6,8 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomMaterialApp(
-      body: Container(),
+    return const CustomMaterialApp(
+      body: Placeholder(),
     );
   }
 }

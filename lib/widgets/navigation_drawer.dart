@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:simple_shopping_list/screens/about_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({super.key});
@@ -36,14 +37,22 @@ class NavigationDrawer extends StatelessWidget {
                 );
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.code),
-              title: const Text('Source Code'),
-              onTap: () {},
+            const ListTile(
+              leading: Icon(Icons.code),
+              title: Text('Source Code'),
+              onTap: _launchSouceCodeUrl,
             ),
           ],
         ),
       ),
     );
   }
+}
+
+void _launchSouceCodeUrl() async {
+  const url = 'https://github.com/MuKhAlt/simple_shopping_list.git';
+  await launchUrl(
+    Uri.parse(url),
+    mode: LaunchMode.externalApplication,
+  );
 }
