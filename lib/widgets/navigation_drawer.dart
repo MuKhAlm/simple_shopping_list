@@ -32,18 +32,24 @@ class NavigationDrawer extends StatelessWidget {
                 leading: const Icon(Icons.home),
                 title: const Text('Home'),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
                   );
                 }),
             ListTile(
               leading: const Icon(Icons.contact_page),
               title: const Text('About'),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AboutScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const AboutScreen(),
+                  ),
                 );
               },
             ),
