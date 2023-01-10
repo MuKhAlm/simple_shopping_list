@@ -5,9 +5,11 @@ class CustomMaterialApp extends StatelessWidget {
   const CustomMaterialApp({
     Key? key,
     required this.body,
+    this.title = 'Simple Shopping List',
   }) : super(key: key);
 
   final Widget body;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CustomMaterialApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Simple Shopping List'),
+          title: Text(title),
         ),
         drawer: const NavigationDrawer(),
         body: body,
