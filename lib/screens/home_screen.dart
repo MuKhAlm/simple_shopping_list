@@ -7,45 +7,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shoppingLists = [
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-      'Shopping List 0',
-      'Shopping List 1',
-      'Shopping List 2',
-      'Shopping List 3',
-      'Shopping List 4',
-      'Shopping List 5',
-    ];
-
+    List<String> shoppingLists = [];
+    for (var i = 1; i <= 20; i++) {
+      shoppingLists.add("Shopping List $i");
+    }
     return CustomMaterialApp(
       body: SafeArea(
         child: Stack(children: [
@@ -66,7 +31,9 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => const ShoppingListScreen()),
+                            builder: ((context) => ShoppingListScreen(
+                                  name: shoppingLists[index],
+                                )),
                           ),
                         );
                       },
