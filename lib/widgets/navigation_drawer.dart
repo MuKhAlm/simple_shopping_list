@@ -12,54 +12,52 @@ class NavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       width: min(MediaQuery.of(context).size.width / 2, 360),
-      child: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Navigation',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Navigation',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
-            ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
-                }),
-            ListTile(
-              leading: const Icon(Icons.contact_page),
-              title: const Text('About'),
+          ),
+          ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AboutScreen(),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
-              },
-            ),
-            const ListTile(
-              leading: Icon(Icons.code),
-              title: Text('Source Code'),
-              onTap: _launchSouceCodeUrl,
-            ),
-          ],
-        ),
+              }),
+          ListTile(
+            leading: const Icon(Icons.contact_page),
+            title: const Text('About'),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutScreen(),
+                ),
+              );
+            },
+          ),
+          const ListTile(
+            leading: Icon(Icons.code),
+            title: Text('Source Code'),
+            onTap: _launchSouceCodeUrl,
+          ),
+        ],
       ),
     );
   }
