@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:simple_shopping_list/screens/about_screen.dart';
+import 'package:simple_shopping_list/screens/home_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigationDrawer extends StatelessWidget {
@@ -27,6 +28,15 @@ class NavigationDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                }),
             ListTile(
               leading: const Icon(Icons.contact_page),
               title: const Text('About'),
