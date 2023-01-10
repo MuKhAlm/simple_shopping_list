@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/main.dart';
+import 'package:simple_shopping_list/models/shopping_list.dart';
 import 'package:simple_shopping_list/screens/shopping_list_screen.dart';
 import 'package:simple_shopping_list/widgets/custom_material_app.dart';
 
@@ -7,10 +9,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> shoppingLists = [];
-    for (var i = 1; i <= 20; i++) {
-      shoppingLists.add("Shopping List $i");
-    }
+    List<ShoppingList> shoppingLists = objectbox.shoppingListBox.getAll();
+
     return CustomMaterialApp(
       body: SafeArea(
         child: Stack(children: [
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                 return Column(
                   children: [
                     ListTile(
-                      title: Text(shoppingLists[index]),
+                      title: Text(shoppingLists[index].name),
                       trailing: IconButton(
                         icon: const Icon(
                           Icons.delete_forever_rounded,
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: ((context) => ShoppingListScreen(
-                                  name: shoppingLists[index],
+                                  name: shoppingLists[index].name,
                                 )),
                           ),
                         );
