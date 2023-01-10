@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/screens/about_screen.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({super.key});
@@ -12,8 +13,8 @@ class NavigationDrawer extends StatelessWidget {
       child: SafeArea(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
+          children: <Widget>[
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -26,12 +27,19 @@ class NavigationDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.contact_page),
-              title: Text('About'),
+              leading: const Icon(Icons.contact_page),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()),
+                );
+              },
             ),
             ListTile(
-              leading: Icon(Icons.code),
-              title: Text('Source Code'),
+              leading: const Icon(Icons.code),
+              title: const Text('Source Code'),
+              onTap: () {},
             ),
           ],
         ),
