@@ -3,6 +3,7 @@ import 'package:simple_shopping_list/main.dart';
 import 'package:simple_shopping_list/models/shopping_list.dart';
 import 'package:simple_shopping_list/screens/shopping_list_screen.dart';
 import 'package:simple_shopping_list/widgets/custom_material_app.dart';
+import 'package:simple_shopping_list/widgets/new_shopping_list_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,8 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ShoppingList> shoppingLists = objectbox.shoppingListBox.getAll();
-  List<Widget> cardList = [];
-  String newShoppingListName = '';
+  bool displayNewShoppingCard = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,92 +68,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Icon(Icons.add),
                       onPressed: () {
                         setState(() {
-                          cardList = [
-                            newShoppingListCard(context),
-                          ];
+                          displayNewShoppingCard = true;
                         });
                       },
                     ),
                   ),
                 ] +
-                cardList),
+                addNewShoppingListCard()),
       ),
     );
   }
 
-  Widget newShoppingListCard(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: 300,
-        height: 200,
-        child: Card(
-          elevation: 20,
-          color: Theme.of(context).colorScheme.onBackground,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        newShoppingListName = '';
-                        cardList = [];
-                      });
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Form(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextFormField(
-                          autofocus: true,
-                          decoration: const InputDecoration(
-                            hintText: 'Shopping List Name',
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              newShoppingListName = value;
-                            });
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: IconButton(
-                            onPressed: (() {
-                              var name;
-                              if (newShoppingListName == '') {
-                                name = 'Untitled';
-                              } else {
-                                name = newShoppingListName;
-                              }
-                              objectbox.shoppingListBox
-                                  .put(ShoppingList(name: name));
-                              setState(() {
-                                cardList = [];
-                              });
-                            }),
-                            icon: const Icon(
-                              Icons.check_circle,
-                              size: 30,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+  List<Widget> addNewShoppingListCard() {
+    if (displayNewShoppingCard) {
+      return [
+        NewShoppingListCard(
+          context: context,
+          onBack: _handleShoppingListCardOnBack,
         ),
-      ),
-    );
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  void _handleShoppingListCardOnBack() {
+    setState(() {
+      displayNewShoppingCard = false;
+    });
   }
 }
