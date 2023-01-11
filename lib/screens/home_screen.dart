@@ -78,14 +78,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   Positioned(
                     bottom: 20,
                     right: 20,
-                    child: FloatingActionButton(
-                      child: const Icon(Icons.add),
-                      onPressed: () {
-                        setState(() {
-                          displayNewShoppingCard = true;
-                        });
-                      },
-                    ),
+                    child: (!displayNewShoppingCard)
+                        ? FloatingActionButton(
+                            child: const Icon(Icons.add),
+                            onPressed: () {
+                              setState(() {
+                                displayNewShoppingCard = true;
+                              });
+                            },
+                          )
+                        : const SizedBox(),
                   ),
                 ] +
                 addNewShoppingListCard()),

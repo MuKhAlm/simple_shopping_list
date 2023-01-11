@@ -89,14 +89,16 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                 Positioned(
                   bottom: 20,
                   right: 20,
-                  child: FloatingActionButton(
-                    child: const Icon(Icons.add),
-                    onPressed: () {
-                      setState(() {
-                        displayNewItemCard = true;
-                      });
-                    },
-                  ),
+                  child: (!displayNewItemCard)
+                      ? FloatingActionButton(
+                          child: const Icon(Icons.add),
+                          onPressed: () {
+                            setState(() {
+                              displayNewItemCard = true;
+                            });
+                          },
+                        )
+                      : const SizedBox(),
                 ),
               ] +
               addNewShoppingListCard(),
