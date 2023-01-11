@@ -33,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(
                                   Icons.delete_forever_rounded,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  objectbox.shoppingListBox
+                                      .remove(shoppingLists[index].id);
+                                },
                               ),
                               onTap: () {
                                 Navigator.push(
