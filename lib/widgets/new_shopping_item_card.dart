@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping_list/main.dart';
+import 'package:simple_shopping_list/models/shopping_item.dart';
 import 'package:simple_shopping_list/models/shopping_list.dart';
 
-class NewShoppingListCard extends StatelessWidget {
-  const NewShoppingListCard({
+class NewShoppingItemCard extends StatelessWidget {
+  const NewShoppingItemCard({
     Key? key,
     required this.context,
     required this.onBack,
+    required this.shoppingList,
   }) : super(key: key);
 
   final BuildContext context;
   final Function onBack;
+  final ShoppingList shoppingList;
 
   @override
   Widget build(BuildContext context) {
-    String newShoppingListName = '';
+    String newShoppingItemName = '';
 
     return Center(
       child: SizedBox(
@@ -45,21 +48,21 @@ class NewShoppingListCard extends StatelessWidget {
                         TextFormField(
                           autofocus: true,
                           decoration: const InputDecoration(
-                            hintText: 'Shopping List Name',
+                            hintText: 'Shopping Item Name',
                           ),
                           onChanged: (value) {
-                            newShoppingListName = value;
+                            newShoppingItemName = value;
                           },
-                          onFieldSubmitted: (value) {
-                            submit(newShoppingListName);
-                          },
+                          onFieldSubmitted: ((value) {
+                            submit(newShoppingItemName);
+                          }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
                           child: IconButton(
-                            onPressed: (() {
-                              submit(newShoppingListName);
-                            }),
+                            onPressed: () {
+                              submit(newShoppingItemName);
+                            },
                             icon: const Icon(
                               Icons.check_circle,
                               size: 30,
@@ -79,14 +82,15 @@ class NewShoppingListCard extends StatelessWidget {
     );
   }
 
-  void submit(String newShoppingListName) {
+  submit(String newShoppingItemName) {
     String name;
-    if (newShoppingListName == '') {
+    if (newShoppingItemName == '') {
       name = 'Untitled';
     } else {
-      name = newShoppingListName;
+      name = newShoppingItemName;
     }
-    objectbox.shoppingListBox.put(ShoppingList(name: name));
+    shoppingList.shoppingItems.add(ShoppingItem(name: name));
+    objectbox.shoppingListBox.put(shoppingList);
     onBack();
   }
 }
