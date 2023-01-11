@@ -22,6 +22,16 @@ class ObjectBox {
         ShoppingList(name: 'Shopping List 3'),
       ];
 
+      final shoppingItems = [
+        ShoppingItem(name: 'Shopping Item 1'),
+        ShoppingItem(name: 'Shopping Item 2'),
+        ShoppingItem(name: 'Shopping Item 3'),
+      ];
+
+      for (var shoppingItem in shoppingItems) {
+        shoppingLists[0].shoppingItems.add(shoppingItem);
+      }
+
       shoppingListBox.putMany(shoppingLists);
     }
   }
