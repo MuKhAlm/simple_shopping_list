@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:simple_shopping_list/models/shopping_list.dart';
 import 'package:simple_shopping_list/widgets/custom_material_app.dart';
 
-class ShoppingListScreen extends StatelessWidget {
+class ShoppingListScreen extends StatefulWidget {
   const ShoppingListScreen({
-    required this.name,
+    required this.shoppingList,
     super.key,
   });
 
-  final String name;
+  final ShoppingList shoppingList;
 
+  @override
+  State<ShoppingListScreen> createState() => _ShoppingListScreenState();
+}
+
+class _ShoppingListScreenState extends State<ShoppingListScreen> {
   @override
   Widget build(BuildContext context) {
     List<String> shoppingItems = [];
@@ -17,7 +23,7 @@ class ShoppingListScreen extends StatelessWidget {
     }
 
     return CustomMaterialApp(
-      title: name,
+      title: widget.shoppingList.name,
       body: SafeArea(
         child: Stack(
           children: [

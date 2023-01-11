@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_shopping_list/main.dart';
 import 'package:simple_shopping_list/models/shopping_list.dart';
-import 'package:simple_shopping_list/objectbox.g.dart';
 import 'package:simple_shopping_list/screens/shopping_list_screen.dart';
 import 'package:simple_shopping_list/widgets/custom_material_app.dart';
 import 'package:simple_shopping_list/widgets/new_shopping_list_card.dart';
@@ -55,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MaterialPageRoute(
                                           builder: ((context) =>
                                               ShoppingListScreen(
-                                                name:
-                                                    snapshot.data![index].name,
+                                                shoppingList:
+                                                    snapshot.data![index],
                                               )),
                                         ),
                                       );
