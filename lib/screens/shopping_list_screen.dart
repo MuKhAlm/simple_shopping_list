@@ -43,14 +43,30 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                         return Column(
                           children: [
                             ListTile(
-                              title: Text(snapshot.data![index].name),
+                              title: Text(
+                                snapshot.data![index].name,
+                                style: (snapshot.data![index].checked)
+                                    ? const TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        decorationThickness: 2,
+                                        fontWeight: FontWeight.w300,
+                                      )
+                                    : null,
+                              ),
                               trailing: IconButton(
                                 icon: const Icon(
                                   Icons.delete_forever_rounded,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  objectbox.shoppingItemBox
+                                      .remove(snapshot.data![index].id);
+                                },
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                ShoppingItem item = snapshot.data![index];
+                                item.checked = !item.checked;
+                                objectbox.shoppingItemBox.put(item);
+                              },
                             ),
                             SizedBox(
                               height: (index == snapshot.data!.length - 1)
