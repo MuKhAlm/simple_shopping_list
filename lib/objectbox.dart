@@ -14,26 +14,6 @@ class ObjectBox {
   ObjectBox._create(this.store) {
     shoppingListBox = Box<ShoppingList>(store);
     shoppingItemBox = Box<ShoppingItem>(store);
-
-    if (shoppingListBox.isEmpty()) {
-      final shoppingLists = [
-        ShoppingList(name: 'Shopping List 1'),
-        ShoppingList(name: 'Shopping List 2'),
-        ShoppingList(name: 'Shopping List 3'),
-      ];
-
-      final shoppingItems = [
-        ShoppingItem(name: 'Shopping Item 1'),
-        ShoppingItem(name: 'Shopping Item 2'),
-        ShoppingItem(name: 'Shopping Item 3'),
-      ];
-
-      for (var shoppingItem in shoppingItems) {
-        shoppingLists[0].shoppingItems.add(shoppingItem);
-      }
-
-      shoppingListBox.putMany(shoppingLists);
-    }
   }
 
   static Future<ObjectBox> create() async {
