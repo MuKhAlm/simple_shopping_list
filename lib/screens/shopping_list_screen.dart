@@ -19,16 +19,15 @@ class ShoppingListScreen extends StatefulWidget {
 }
 
 class _ShoppingListScreenState extends State<ShoppingListScreen> {
-  bool displayNewItemCard = false;
+  bool _displayNewItemCard = false;
+  late final Stream<List<ShoppingItem>> _shoppingItemStream = objectbox
+      .shoppingItemBox
+      .query(ShoppingItem_.shoppingList.equals(widget.shoppingList.id))
+      .watch(triggerImmediately: true)
+      .map((query) => query.find());
 
   @override
   Widget build(BuildContext context) {
-    late Stream<List<ShoppingItem>> _shoppingItemStream = objectbox
-        .shoppingItemBox
-        .query(ShoppingItem_.shoppingList.equals(widget.shoppingList.id))
-        .watch(triggerImmediately: true)
-        .map((query) => query.find());
-
     return CustomMaterialApp(
       title: widget.shoppingList.name,
       body: SafeArea(
@@ -89,12 +88,12 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                 Positioned(
                   bottom: 20,
                   right: 20,
-                  child: (!displayNewItemCard)
+                  child: (!_displayNewItemCard)
                       ? FloatingActionButton(
                           child: const Icon(Icons.add),
                           onPressed: () {
                             setState(() {
-                              displayNewItemCard = true;
+                              _displayNewItemCard = true;
                             });
                           },
                         )
@@ -108,7 +107,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
   }
 
   List<Widget> addNewShoppingListCard() {
-    if (displayNewItemCard) {
+    if (_displayNewItemCard) {
       return [
         NewShoppingItemCard(
           context: context,
@@ -123,7 +122,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
 
   void _handleShoppingListCardOnBack() {
     setState(() {
-      displayNewItemCard = false;
+      _displayNewItemCard = false;
     });
   }
 }
